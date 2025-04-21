@@ -1,14 +1,17 @@
-const express = require('express')
-const crypto = require('node:crypto')
-const movies = require('./movies.json')
-const { validateMovie } = require('./schemes/movies')
+import express, { json } from 'express'
+import { randomUUID } from 'node:crypto'
+import fs from 'node:fs'
+
+import { validateMovie } from './schemes/movies.js'
+
+const movies = JSON.parse(fs.readFileSync('./res/movies.json', 'utf-8'))
 
 const app = express()
 app.disable('x-powered-by')
 
 const PORT = process.env.PORT || 1234
 
-app.use(express.json()) // parse application/json
+app.use(json()) // parse application/json
 
 app.get('/', (req, res) => {
     res.json({ message: 'Hello World!' })
@@ -28,6 +31,7 @@ app.get('/movies', (req, res) => {
     }
     res.json(movies)
 })
+// })
 
 // localhost:1234/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
 app.get('/movies/:id', (req, res) => { // path to regexp
@@ -56,7 +60,7 @@ app.post('/movies', (req, res) => {
     }
 
     const newMovie = {
-        id: crypto.randomUUID(),
+        id: randomUUID(),
         ...result.data // Destructuring para obtener los datos validados
     }
 
