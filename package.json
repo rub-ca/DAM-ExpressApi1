@@ -1,0 +1,27 @@
+{
+  "name": "video-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "r": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "standard": "^17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "rules": {
+      "indent": "off"
+    }
+  }
+}
